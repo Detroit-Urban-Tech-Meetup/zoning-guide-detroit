@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "name": "zoning-guide-detroit",
+  "private": false,
+  "description": "A guide to Detroit's zoning code.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jimmy McBroom <james.mcbroom@gmail.com>",
+  "contributors": [],
   "dependencies": {
     "gatsby": "^2.15.14",
     "gatsby-image": "^2.2.18",
@@ -22,7 +23,10 @@
     "prettier": "^1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "zoning",
+    "detroit",
+    "michigan",
+    "civic-tech"
   ],
   "license": "MIT",
   "scripts": {
@@ -35,9 +39,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/Detroit-Urban-Tech-Meetup/zoning-guide-detroit"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/Detroit-Urban-Tech-Meetup/zoning-guide-detroit/issues"
   }
 }
