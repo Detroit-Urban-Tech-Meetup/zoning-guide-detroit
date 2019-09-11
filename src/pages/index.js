@@ -1,21 +1,41 @@
+import { Link, graphql } from "gatsby"
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = ({ data }) => {
+  let zones = data.allAirtable.edges.map(e => e.node.data)
+
+  return (
+    <Layout>
+      <SEO title="Detroit zoning guide" />
+      <ul>
+        {zones.map(z => (
+          <Link key={z.Name} to={`/zone/${z.Zone}`}>
+            <li>
+              {z.Zone} {z.Name}
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  {
+    allAirtable(filter: { table: { eq: "Codes" } }) {
+      edges {
+        node {
+          data {
+            Name
+            Zone
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
