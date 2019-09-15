@@ -16,6 +16,6 @@ We started this project on the 2018-09-10 civic tech hackathon at WeWork. Our ha
 
 5. Replace `<your API key>` with [your Airtable API Key](https://support.airtable.com/hc/en-us/articles/219046777-How-do-I-get-my-API-key-) in `example.env` and rename to `.env.development`
 
-6. Start developing with `gatsby develop` - Gatsby will access the Airtable, build nodes, etc and will start serving at `localhost:3000`
+6. Start developing with `gatsby develop` - Gatsby will access the Airtable, build nodes, etc and will start serving at `localhost:8000`. You can access the GraphiQL Explorer at `localhost:8000/___graphql`: this is the internal store of all the data that Gatsby can use to build the site.
 
 ### Common development errors
