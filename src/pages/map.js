@@ -9,12 +9,10 @@ import style from "../components/style"
 const Map = ({ data }) => {
   let zones = data.allAirtable.edges
     .map(e => e.node.data)
-    .sort((a, b) => a.Name < b.Name)
 
   let zoneColors = Array.from(
     zones.map(z => [z.Zone, z.Color ? z.Color : "red"])
   )
-  console.log(zoneColors)
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -65,7 +63,10 @@ const Map = ({ data }) => {
           "text-halo-color": "black",
           "text-halo-width": 1,
           "text-color": "white",
-          "text-opacity": 0.85,
+          "text-opacity": {
+            "base": 1,
+            "stops": [[16.25, 0], [16.26, 0.1], [16.5, 1]]
+          },
         },
       })
 
@@ -79,7 +80,10 @@ const Map = ({ data }) => {
         },
         paint: {
           "line-color": "black",
-          "line-opacity": 0.33,
+          "line-opacity": {
+            "base": 1,
+            "stops": [[13, 0], [14, 0.1], [16, 1]]
+          },
           "line-width": 1,
         },
       })
