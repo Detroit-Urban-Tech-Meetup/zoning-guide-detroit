@@ -26,7 +26,6 @@ export const query = graphql`
         Conditional_uses
         Description
         Name
-        Site_plan_review
         Zone
       }
     }
