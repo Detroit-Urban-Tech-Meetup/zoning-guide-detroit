@@ -1,24 +1,9 @@
-import chroma from "chroma-js"
 import _ from "lodash"
 import mapboxgl from "mapbox-gl"
 import React, { useEffect } from "react"
-
-import Layout from "../components/layout"
 import style from "../components/style"
 
-const Map = ({ data }) => {
-  let zones = data.allAirtable.edges
-    .map(e => e.node.data)
-
-  // group them into a new object by Group
-  let zonesGrouped = _.groupBy(zones, "Group")
-
-  // get those group names
-  let zoneGroups = Object.keys(zonesGrouped)
-
-  let zoneColors = Array.from(
-    zones.map(z => [z.Zone, z.Color ? z.Color : "red"])
-  )
+const ZoneMap = ({ zone }) => {
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -28,7 +13,7 @@ const Map = ({ data }) => {
       container: "map",
       style: style,
       center: [-83.074369, 42.361489],
-      zoom: 10.5, // starting zoom,
+      zoom: 10, // starting zoom,
       attributionControl: false,
     })
 
@@ -44,6 +29,7 @@ const Map = ({ data }) => {
         type: "fill",
         source: "zoning",
         "source-layer": "zoninggeojson",
+        filter: ['==', "zoning_rev", zone.Zone],
         layout: {
           visibility: "visible",
         },
@@ -51,7 +37,7 @@ const Map = ({ data }) => {
           "fill-color": {
             property: "zoning_rev",
             type: "categorical",
-            stops: zoneColors,
+            stops: [[zone.Zone, zone.Color]],
           },
           "fill-opacity": 0.6,
         },
@@ -61,6 +47,7 @@ const Map = ({ data }) => {
         type: "symbol",
         source: "zoning",
         "source-layer": "zoninggeojson",
+        filter: ['==', "zoning_rev", zone.Zone],
         layout: {
           "text-field": ["get", "zoning_rev"],
           "text-padding": 20,
@@ -81,6 +68,7 @@ const Map = ({ data }) => {
         type: "line",
         source: "zoning",
         "source-layer": "zoninggeojson",
+        filter: ['==', "zoning_rev", zone.Zone],
         layout: {
           visibility: "visible",
         },
@@ -96,54 +84,9 @@ const Map = ({ data }) => {
     })
   }, [])
 
-  // here's a style that will make a nice grid of <div>s
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: `repeat(auto-fit, minmax(275px, 1fr))`,
-    gridGap: `.5em`,
-    boxSizing: "border-box",
-    padding: 0,
-    WebkitOverflowScrolling: "touch",
-  }
-
   return (
-    <Layout>
-      <h2>Zoning map of Detroit</h2>
-      <div id="map" style={{ height: "60vh", width: "100%" }}></div>
-      <section style={{marginTop: '1em', background: 'rgba(0,0,50,0.15)', padding: '1em'}}>
-        <h3>Legend</h3>
-      {zoneGroups.map(zg => (
-        <div style={{display: 'flex', alignItems: 'center'}}>
-        <h4 style={{minWidth: 180, margin: 0, fontWeight: 800}}>{zg}</h4>
-        {zonesGrouped[zg].map(z => (
-          <div style={{width: 60, height: 40, display: 'flex', justifyContent: 'space-around', alignItems: 'center', fontWeight: 700, margin: 0, textAlign: 'center', verticalAlign: 'middle', background: z.Color, color: z.TextColor}}>{z.Zone}</div>
-          ))}
-        </div>
-      ))}
-      </section>
-    </Layout>
+      <div id="map" style={{ height: "50vh", width: "100%" }}></div>
   )
 }
 
-export const query = graphql`
-  {
-    allAirtable(
-      sort: { order: ASC, fields: data___Zone }
-      filter: { table: { eq: "Codes" } }
-    ) {
-      edges {
-        node {
-          data {
-            Zone
-            Name
-            Group
-            Color
-            TextColor
-          }
-        }
-      }
-    }
-  }
-`
-
-export default Map
+export default ZoneMap

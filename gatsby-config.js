@@ -8,7 +8,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Detroit zoning guide`,
+    title: `Zoning Guide Detroit`,
     description: `A guide to Detroit's zoning code.`,
     author: `Detroit civic tech meetup`,
   },
@@ -43,6 +43,7 @@ module.exports = {
           {
             baseId: `appGvGCSDLLJN4PKK`,
             tableName: `Codes`,
+            tableLinks: ["By-right_uses", "Conditional_uses", "Legislative_approval_uses"]
           },
           {
             baseId: `appGvGCSDLLJN4PKK`,
@@ -51,6 +52,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-mdx`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
