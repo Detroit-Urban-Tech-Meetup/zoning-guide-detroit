@@ -1,4 +1,4 @@
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 import _ from "lodash"
 
