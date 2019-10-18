@@ -13,7 +13,7 @@ import Header from "./header"
 import Footer from './footer'
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, fullscreen }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 1080,
+          maxWidth: fullscreen ? '100vw' : 1080,
           padding: `0px 1.0875rem 1.45rem`,
           paddingTop: 0,
         }}
