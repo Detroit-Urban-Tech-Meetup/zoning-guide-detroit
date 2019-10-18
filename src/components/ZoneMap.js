@@ -1,4 +1,3 @@
-import _ from "lodash"
 import mapboxgl from "mapbox-gl"
 import React, { useEffect } from "react"
 import style from "../components/style"
@@ -7,7 +6,7 @@ const ZoneMap = ({ zone }) => {
 
   useEffect(() => {
     mapboxgl.accessToken =
-      "pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzMnRtdWhyYnk5dTFyIn0.FZMFi0-hvA60KYnI-KivWg"
+      "pk.eyJ1Ijoiam1jYnJvb20iLCJhIjoianRuR3B1NCJ9.cePohSx5Od4SJhMVjFuCQA"
 
     let map = new mapboxgl.Map({
       container: "map",
@@ -50,15 +49,18 @@ const ZoneMap = ({ zone }) => {
         filter: ['==', "zoning_rev", zone.Zone],
         layout: {
           "text-field": ["get", "zoning_rev"],
-          "text-padding": 20,
+          "text-padding": 30,
+          "text-font": ["Inter Bold"],
+          "text-size": {
+            "base": 1,
+            "stops": [[12.25, 10], [12.26, 12], [17, 24]]
+          }
         },
         paint: {
-          "text-halo-color": "black",
-          "text-halo-width": 1,
-          "text-color": "white",
+          "text-color": zone.TextColor,
           "text-opacity": {
             "base": 1,
-            "stops": [[16.25, 0], [16.26, 0.1], [16.5, 1]]
+            "stops": [[12.25, 0], [12.26, 0.1], [15.5, 0.8]]
           },
         },
       })

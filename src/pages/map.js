@@ -1,7 +1,8 @@
-import chroma from "chroma-js"
 import _ from "lodash"
 import mapboxgl from "mapbox-gl"
 import React, { useEffect } from "react"
+
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import Layout from "../components/layout"
 import style from "../components/style"
@@ -16,13 +17,19 @@ const Map = ({ data }) => {
   // get those group names
   let zoneGroups = Object.keys(zonesGrouped)
 
+  // zone color stops, for the mapbox style
   let zoneColors = Array.from(
     zones.map(z => [z.Zone, z.Color ? z.Color : "red"])
   )
 
+  // zone text color stops, for the mapbox style
+  let zoneTextColors = Array.from(
+    zones.map(z => [z.Zone, z.TextColor ? z.TextColor : "red"])
+  )
+
   useEffect(() => {
     mapboxgl.accessToken =
-      "pk.eyJ1IjoiY2l0eW9mZGV0cm9pdCIsImEiOiJjaXZvOWhnM3QwMTQzMnRtdWhyYnk5dTFyIn0.FZMFi0-hvA60KYnI-KivWg"
+      "pk.eyJ1Ijoiam1jYnJvb20iLCJhIjoianRuR3B1NCJ9.cePohSx5Od4SJhMVjFuCQA"
 
     let map = new mapboxgl.Map({
       container: "map",
@@ -53,7 +60,7 @@ const Map = ({ data }) => {
             type: "categorical",
             stops: zoneColors,
           },
-          "fill-opacity": 0.6,
+          "fill-opacity": 0.7,
         },
       })
       map.addLayer({
@@ -63,15 +70,21 @@ const Map = ({ data }) => {
         "source-layer": "zoninggeojson",
         layout: {
           "text-field": ["get", "zoning_rev"],
-          "text-padding": 20,
-        },
+          "text-padding": 40,
+          "text-font": ["Inter Bold"],
+          "text-size": {
+            "base": 1,
+            "stops": [[12.25, 10], [12.26, 12], [17, 24]]
+          }        },
         paint: {
-          "text-halo-color": "black",
-          "text-halo-width": 1,
-          "text-color": "white",
+          "text-color": {
+            property: "zoning_rev",
+            type: "categorical",
+            stops: zoneTextColors,
+          },
           "text-opacity": {
             "base": 1,
-            "stops": [[16.25, 0], [16.26, 0.1], [16.5, 1]]
+            "stops": [[12.25, 0], [12.26, 1]]
           },
         },
       })
@@ -96,18 +109,8 @@ const Map = ({ data }) => {
     })
   }, [])
 
-  // here's a style that will make a nice grid of <div>s
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: `repeat(auto-fit, minmax(275px, 1fr))`,
-    gridGap: `.5em`,
-    boxSizing: "border-box",
-    padding: 0,
-    WebkitOverflowScrolling: "touch",
-  }
-
   return (
-    <Layout>
+    <Layout fullscreen>
       <h2>Zoning map of Detroit</h2>
       <div id="map" style={{ height: "60vh", width: "100%" }}></div>
       <section style={{marginTop: '1em', background: 'rgba(0,0,50,0.15)', padding: '1em'}}>
