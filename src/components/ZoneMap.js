@@ -1,9 +1,9 @@
 import mapboxgl from "mapbox-gl"
 import React, { useEffect } from "react"
+
 import style from "../components/style"
 
 const ZoneMap = ({ zone }) => {
-
   useEffect(() => {
     mapboxgl.accessToken =
       "pk.eyJ1Ijoiam1jYnJvb20iLCJhIjoianRuR3B1NCJ9.cePohSx5Od4SJhMVjFuCQA"
@@ -28,7 +28,7 @@ const ZoneMap = ({ zone }) => {
         type: "fill",
         source: "zoning",
         "source-layer": "zoninggeojson",
-        filter: ['==', "zoning_rev", zone.Zone],
+        filter: ["==", "zoning_rev", zone.Zone],
         layout: {
           visibility: "visible",
         },
@@ -38,7 +38,7 @@ const ZoneMap = ({ zone }) => {
             type: "categorical",
             stops: [[zone.Zone, zone.Color]],
           },
-          "fill-opacity": 0.6,
+          "fill-opacity": 1,
         },
       })
       map.addLayer({
@@ -46,21 +46,21 @@ const ZoneMap = ({ zone }) => {
         type: "symbol",
         source: "zoning",
         "source-layer": "zoninggeojson",
-        filter: ['==', "zoning_rev", zone.Zone],
+        filter: ["==", "zoning_rev", zone.Zone],
         layout: {
           "text-field": ["get", "zoning_rev"],
           "text-padding": 30,
           "text-font": ["Inter Bold"],
           "text-size": {
-            "base": 1,
-            "stops": [[12.25, 10], [12.26, 12], [17, 24]]
-          }
+            base: 1,
+            stops: [[12.25, 10], [12.26, 12], [17, 24]],
+          },
         },
         paint: {
           "text-color": zone.TextColor,
           "text-opacity": {
-            "base": 1,
-            "stops": [[12.25, 0], [12.26, 0.1], [15.5, 0.8]]
+            base: 1,
+            stops: [[12.25, 0], [12.26, 0.1], [15.5, 0.8]],
           },
         },
       })
@@ -70,15 +70,15 @@ const ZoneMap = ({ zone }) => {
         type: "line",
         source: "zoning",
         "source-layer": "zoninggeojson",
-        filter: ['==', "zoning_rev", zone.Zone],
+        filter: ["==", "zoning_rev", zone.Zone],
         layout: {
           visibility: "visible",
         },
         paint: {
           "line-color": "black",
           "line-opacity": {
-            "base": 1,
-            "stops": [[13, 0], [14, 0.1], [16, 1]]
+            base: 1,
+            stops: [[13, 0], [14, 0.1], [16, 1]],
           },
           "line-width": 1,
         },
@@ -86,9 +86,7 @@ const ZoneMap = ({ zone }) => {
     })
   }, [])
 
-  return (
-      <div id="map" style={{ height: "50vh", width: "100%" }}></div>
-  )
+  return <div id="map" style={{ height: "50vh", width: "100%" }}></div>
 }
 
 export default ZoneMap

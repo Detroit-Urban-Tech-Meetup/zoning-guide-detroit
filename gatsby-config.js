@@ -43,16 +43,25 @@ module.exports = {
           {
             baseId: `appGvGCSDLLJN4PKK`,
             tableName: `Codes`,
-            tableLinks: ["By-right_uses", "Conditional_uses", "Legislative_approval_uses"]
+            tableLinks: [
+              "By-right_uses",
+              "Conditional_uses",
+              "Legislative_approval_uses",
+            ],
           },
           {
             baseId: `appGvGCSDLLJN4PKK`,
             tableName: `Uses`,
+            tableLinks: [
+              "By-right_in",
+              "Conditional_in",
+              "Legislative_approval_in",
+            ],
           },
         ],
       },
     },
-    `gatsby-plugin-mdx`
+    `gatsby-plugin-mdx`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
