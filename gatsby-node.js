@@ -26,10 +26,9 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
     {
-      allAirtable(filter: { table: { eq: "Codes" } }) {
+      codes: allAirtable(filter: { table: { eq: "Codes" } }) {
         edges {
           node {
-            id
             data {
               Name
               Zone
@@ -37,10 +36,22 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           }
         }
       }
+      uses: allAirtable(filter: { table: { eq: "Uses" } }) {
+        edges {
+          node {
+            data {
+              Name
+              Type
+              Subgroup
+              Slug
+            }
+          }
+        }
+      }
     }
   `)
 
-  let zones = result.data.allAirtable.edges.map(e => e.node.data)
+  let zones = result.data.codes.edges.map(e => e.node.data)
 
   zones.forEach(z => {
     createPage({
@@ -52,4 +63,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       },
     })
   })
+
+  let uses = result.data.uses.edges.map(e => e.node.data)
+
+  uses.forEach(u => {
+    createPage({
+      path: `/use/${u.Slug}`,
+      component: path.resolve("./src/templates/use-page.js"),
+      context: {
+        slug: u.Slug
+      },
+    })
+  })  
 }
