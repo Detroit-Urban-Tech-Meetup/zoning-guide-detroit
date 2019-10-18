@@ -37,9 +37,11 @@ const Header = ({ siteTitle }) => (
       </h1>
     <div style={{display: 'flex'}}>
       <Link to={`/`} style={linkStyle}>Home</Link>
+      <Link to={`/zones`} style={linkStyle}>Zones</Link>
+      <Link to={`/uses`} style={linkStyle}>Uses</Link>
       <Link to={`/map`} style={linkStyle}>Map</Link>
-      <Link to={`/about`} style={linkStyle}>About</Link>
       <Link to={`/links`} style={linkStyle}>Links</Link>
+      <Link to={`/about`} style={linkStyle}>About</Link>
     </div>
     </div>
   </header>
