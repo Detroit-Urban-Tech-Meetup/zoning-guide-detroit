@@ -8,7 +8,6 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
-    "chroma-js": "^2.0.6",
     "dotenv": "^8.1.0",
     "gatsby": "^2.15.14",
     "gatsby-image": "^2.2.18",
