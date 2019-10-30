@@ -24,17 +24,20 @@ const Header = ({ siteTitle }) => (
         padding: `1.05rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <div style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
             color: `black`,
+            fontSize: '38px',
+            fontWeight: 'bold',
+            lineHeight: '56px',
             textDecoration: `none`,
           }}
         >
           {siteTitle}
         </Link>
-      </h1>
+      </div>
     <div style={{display: 'flex'}}>
       <Link to={`/`} style={linkStyle}>Home</Link>
       <Link to={`/zones`} style={linkStyle}>Zones</Link>
