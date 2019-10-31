@@ -111,13 +111,13 @@ const Map = ({ data }) => {
 
   return (
     <Layout fullscreen>
-      <h2>Zoning map of Detroit</h2>
+      <h1>Map</h1>
       <div id="map" style={{ height: "60vh", width: "100%" }}></div>
       <section style={{marginTop: '1em', background: 'rgba(0,0,50,0.15)', padding: '1em'}}>
-        <h3>Legend</h3>
+        <div style={{fontWeight: 'bold'}}>Legend</div>
       {zoneGroups.map(zg => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-        <h4 style={{minWidth: 180, margin: 0, fontWeight: 800}}>{zg}</h4>
+        <div style={{minWidth: 180, margin: 0}}>{zg}</div>
         {zonesGrouped[zg].map(z => (
           <div style={{width: 60, height: 40, display: 'flex', justifyContent: 'space-around', alignItems: 'center', fontWeight: 700, margin: 0, textAlign: 'center', verticalAlign: 'middle', background: z.Color, color: z.TextColor}}>{z.Zone}</div>
           ))}
