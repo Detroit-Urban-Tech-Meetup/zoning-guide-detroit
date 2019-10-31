@@ -35,7 +35,7 @@ const Zones = ({ data }) => {
             key={zg}
             style={{ background: "rgba(0,0,50,0.15)", padding: "1em" }}
           >
-            <h3>{zg}</h3>
+            <h2>{zg}</h2>
             {zonesGrouped[zg].map(z => (
               <ZoneBadge zone={z} link />
             ))}
