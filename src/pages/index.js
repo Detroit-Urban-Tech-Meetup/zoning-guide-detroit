@@ -24,6 +24,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
+      <h1>Home</h1>
       <SEO title="Detroit Zoning" />
       <section style={sectionStyle}>
         <p>{data.site.siteMetadata.description}</p>
