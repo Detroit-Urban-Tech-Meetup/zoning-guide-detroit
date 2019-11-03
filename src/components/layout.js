@@ -27,7 +27,7 @@ const Layout = ({ children, fullscreen }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
+      <main
         style={{
           margin: `0 auto`,
           maxWidth: fullscreen ? '100vw' : 1080,
@@ -35,8 +35,8 @@ const Layout = ({ children, fullscreen }) => {
           paddingTop: 0,
         }}
       >
-        <main>{children}</main>
-      </div>
+        <div>{children}</div>
+      </main>
       <Footer />
     </>
   )
