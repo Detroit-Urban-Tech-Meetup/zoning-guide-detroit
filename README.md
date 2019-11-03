@@ -59,6 +59,7 @@ For each use, here's what needs to happen:
 
 6. Now, for each use, do a search in the PDF for the use name.
 
-7. If you find "Use Regulations", copy and paste that text into the Airtable under "Use Regulations". *Be sure not to copy and paste text with line breaks - this will overwrite rows beneath!!* The macOS Preview app will automatically strip out line breaks; there is a hack you can use for Ubuntu/Windows outlined [here](https://superuser.com/a/796341) -- feel free to ping Jimmy for details about how to implement this, as it's really key to doing this work efficiently.
+7. If you find "Use Regulations", copy and paste that text into the Airtable under "Use Regulations". *Be sure not to copy and paste text with line breaks - this will overwrite rows beneath!!* The macOS Preview app will automatically strip out line breaks; there is a hack you can use for Ubuntu/Windows outlined [here](https://superuser.com/a/796341) -- feel free to ping Jimmy for details about how to implement this, as it's really key to doing this work efficiently. (Another way: Right click on the cell and click on "expand record." There you can paste in a copied paragraph from the PDF and it won't overwrite other cells)
+
 
 8 If you find the use has a definition, copy and paste that definition into the "Definitions" field in Airtable.
