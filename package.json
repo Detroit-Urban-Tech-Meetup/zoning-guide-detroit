@@ -19,7 +19,7 @@
     "gatsby-source-airtable": "^2.0.9",
     "gatsby-source-filesystem": "^2.1.22",
     "gatsby-transformer-sharp": "^2.2.14",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^1.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
